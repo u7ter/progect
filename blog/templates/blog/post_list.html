@@ -1,8 +1,63 @@
-<html>
-    <p>Hi there!</p>
-    <p>It works!</p>
----
-{% for post in posts %}
-    {{ post.title }}
-{% endfor %}
-</html>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="container margin_60">
+    <div class="main_title">
+        <h1>Findoctor Blog</h1>
+        <p>Usu habeo equidem sanctus no. Suas summo id sed, erat erant oporteat cu pri. In eum omnes molestie. Sed ad debet scaevola, ne mel.</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-9">
+            {% for post in posts %}
+                    <article class="blog wow fadeIn">
+                        <div class="row no-gutters">
+                            <div class="col-lg-7">
+                                <figure>
+                                    <a href="/blog/{{ post.slug }}/">
+                                        <img src="{{ post.images.url }}" alt="{{ post.title }}">
+                                        <div class="preview">
+                                            <span>Read more</span>
+                                        </div>
+                                    </a>
+                                </figure>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="post_info">
+                                    <small>{{ post.published_date }}</small>
+                                    <h3><a href="/blog/{{ post.slug }}/">{{ post.title }}</a></h3>
+                                    <p>{{ post.text|truncatechars_html:150 }}</p>
+                                    <ul>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="img/thumb_blog.jpg" alt="{{ post.title }}">
+                                            </div> Jessica Hoops
+                                        </li>
+                                        <li><i class="icon_comment_alt"></i> 20</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!-- /article -->
+                {% endfor %}
+
+            <div class="pagination">
+                <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+            </div>
+        </div>
+        {% include "blog/sitebar.html" %}
+    </div>
+</div>
+{% endblock %}

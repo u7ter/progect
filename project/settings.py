@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import posixpath
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'progect.urls'
+ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
@@ -119,5 +119,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 STATIC_URL = '/static/'
+# MEDIA_URL = '/http://127.0.0.1:8000/images/'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'site_media', 'media')
+MEDIA_URL = '/site_media/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'site_media', 'static')
+SITE_MEDIA_URL = '/site_media/'
+STATIC_URL = '/site_media/'
+ADMIN_TOOLS_MEDIA_URL = '/site_media/'
+ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'site_media'),)
