@@ -13,7 +13,7 @@
                         <div class="row no-gutters">
                             <div class="col-lg-7">
                                 <figure>
-                                    <a href="/blog/{{ post.slug }}/">
+                                    <a href="/blog/{{ post.id }}/">
                                         <img src="{{ post.images.url }}" alt="{{ post.title }}">
                                         <div class="preview">
                                             <span>Read more</span>
@@ -24,7 +24,7 @@
                             <div class="col-lg-5">
                                 <div class="post_info">
                                     <small>{{ post.published_date }}</small>
-                                    <h3><a href="/blog/{{ post.slug }}/">{{ post.title }}</a></h3>
+                                    <h3><a href="/blog/{{ post.id }}/">{{ post.title }}</a></h3>
                                     <p>{{ post.text|truncatechars_html:150 }}</p>
                                     <ul>
                                         <li>

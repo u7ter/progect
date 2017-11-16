@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="container margin_60">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="bloglist singlepost">
+                <p>
+                    <img class="img-fluid" src="{{ post.images.url }}" alt="{{ post.title }}">
+                </p>
+                <h1>{{ post.title }}</h1>
+                <div class="postmeta">
+                    <ul>
+                        <li><a href="#"><i class="icon_clock_alt"></i> 23/12/2015</a></li>
+                        <li><a href="#"><i class="icon_pencil-edit"></i> Admin</a></li>
+                        <li>
+                            {% if post.published_date %}
+                                <a href="#"><i class="icon_comment_alt"></i>
+                                    {{ post.published_date }}
+                                </a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+
+
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        </div>
+        {% include "blog/sitebar.html" %}
+    </div>
+</div>
+{% endblock %}
